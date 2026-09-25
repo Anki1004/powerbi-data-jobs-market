@@ -9,3 +9,6 @@ data/JobSkills.csv
 LINKEDIN-POST.md
 carousel/*
 !carousel/all-pages-grid.png
+
+# local run logs
+tools/*.log
