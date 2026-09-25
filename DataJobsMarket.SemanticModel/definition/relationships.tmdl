@@ -1,0 +1,14 @@
+relationship d19dcb73-1e05-4bb3-b131-988055ba8269
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Jobs.Date
+	toColumn: DimDate.Date
+
+relationship 1b4d9d85-4f3d-4611-93c4-e57e27955b5b
+	crossFilteringBehavior: bothDirections
+	fromColumn: JobSkills.'Job ID'
+	toColumn: Jobs.'Job ID'
+
+relationship c2189770-bfae-4a2a-a3c6-29804d59b66f
+	fromColumn: JobSkills.Skill
+	toColumn: DimSkill.Skill
+

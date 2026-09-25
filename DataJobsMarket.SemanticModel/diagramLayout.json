@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1136.6221629171371,
+            "y": 69.059422833439271
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "6bed9530-8228-4f18-9169-d750d8751e93",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 88.118845666878542
+          },
+          "nodeIndex": "DimDate",
+          "nodeLineageTag": "a4a63759-f7e5-4aa8-a7b7-e7d40eedc089",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 902.622162917137,
+            "y": -50
+          },
+          "nodeIndex": "DimSkill",
+          "nodeLineageTag": "522e66d2-9014-4a5a-a550-ebcaf53e50c7",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334.202255104609,
+            "y": 11.886687578593538
+          },
+          "nodeIndex": "Jobs",
+          "nodeLineageTag": "0e752a8f-92db-4678-b2c9-127764dcfd6c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 618.41040181545577,
+            "y": 20.378697769121231
+          },
+          "nodeIndex": "JobSkills",
+          "nodeLineageTag": "ad865327-9357-43f0-82fb-eebb7fbb6132",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

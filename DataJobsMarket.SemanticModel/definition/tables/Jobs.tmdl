@@ -1,0 +1,161 @@
+table Jobs
+	lineageTag: 0e752a8f-92db-4678-b2c9-127764dcfd6c
+
+	column 'Job ID'
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: d6e1ceda-0c96-46d5-a8e8-d1784a3a83a7
+		summarizeBy: none
+		sourceColumn: Job ID
+
+		annotation SummarizationSetBy = User
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: 0be15717-0456-42c9-9ad0-7103f2adf981
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Posted Hour'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 6d51506b-a629-481f-981d-2136cf7ebaf2
+		summarizeBy: none
+		sourceColumn: Posted Hour
+
+		annotation SummarizationSetBy = User
+
+	column 'Job Title'
+		dataType: string
+		lineageTag: d490cbb9-6925-406f-9e36-7c690f49a76c
+		summarizeBy: none
+		sourceColumn: Job Title
+
+		annotation SummarizationSetBy = User
+
+	column 'Full Title'
+		dataType: string
+		lineageTag: 7c1f9a46-e9b0-48b9-a33b-37b4023ed18d
+		summarizeBy: none
+		sourceColumn: Full Title
+
+		annotation SummarizationSetBy = User
+
+	column Location
+		dataType: string
+		lineageTag: 8a217905-f802-4766-8a03-ec02e3dc719f
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = User
+
+	column Country
+		dataType: string
+		lineageTag: 0d792b56-6591-4d81-be87-ce3e060c3eb9
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = User
+
+	column Company
+		dataType: string
+		lineageTag: 33a03c89-7b83-464f-8b83-729e7a0c21e8
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = User
+
+	column Platform
+		dataType: string
+		lineageTag: b0dce2ed-50f5-409f-b2fe-f9e71538a677
+		summarizeBy: none
+		sourceColumn: Platform
+
+		annotation SummarizationSetBy = User
+
+	column Schedule
+		dataType: string
+		lineageTag: 4cb4df51-b59a-45c7-96fe-ce1af2214620
+		summarizeBy: none
+		sourceColumn: Schedule
+
+		annotation SummarizationSetBy = User
+
+	column Remote
+		dataType: string
+		lineageTag: 09fa3ace-daf0-48a1-b66c-7c8ab86ffc4a
+		summarizeBy: none
+		sourceColumn: Remote
+
+		annotation SummarizationSetBy = User
+
+	column 'Degree Mention'
+		dataType: string
+		lineageTag: 32a5c7cc-ee7a-4848-b1c7-6505aab72c51
+		summarizeBy: none
+		sourceColumn: Degree Mention
+
+		annotation SummarizationSetBy = User
+
+	column 'Health Insurance'
+		dataType: string
+		lineageTag: 4c959386-a353-4b1f-84e3-8c86cbf370f0
+		summarizeBy: none
+		sourceColumn: Health Insurance
+
+		annotation SummarizationSetBy = User
+
+	column 'Annual Salary'
+		dataType: double
+		formatString: \$#,0
+		lineageTag: f2e7b396-1c37-4f52-8858-9167d3121e0d
+		summarizeBy: none
+		sourceColumn: Annual Salary
+
+		annotation SummarizationSetBy = User
+
+	column 'Hourly Salary'
+		dataType: double
+		formatString: \$#,0.00
+		lineageTag: 327b07ed-1c54-4a5b-9442-30de27b866b9
+		summarizeBy: none
+		sourceColumn: Hourly Salary
+
+		annotation SummarizationSetBy = User
+
+	column 'Salary Band'
+		dataType: string
+		lineageTag: 3981a540-1c05-45f2-a3f8-0cfb093d8747
+		summarizeBy: none
+		sourceColumn: Salary Band
+		sortByColumn: 'Salary Band Order'
+
+		annotation SummarizationSetBy = User
+
+	column 'Salary Band Order'
+		dataType: double
+		isHidden
+		lineageTag: aac7a10e-4d5b-4981-b7dd-f717158aa257
+		summarizeBy: none
+		sourceColumn: Salary Band Order
+
+		annotation SummarizationSetBy = User
+
+	partition Jobs = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "Jobs.csv"),[Delimiter=",", Columns=17, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers,{{"Job ID", Int64.Type}, {"Date", type date}, {"Posted Hour", Int64.Type}, {"Job Title", type text}, {"Full Title", type text}, {"Location", type text}, {"Country", type text}, {"Company", type text}, {"Platform", type text}, {"Schedule", type text}, {"Remote", type text}, {"Degree Mention", type text}, {"Health Insurance", type text}, {"Annual Salary", type number}, {"Hourly Salary", type number}, {"Salary Band", type text}, {"Salary Band Order", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,40 @@
+table DimSkill
+	lineageTag: 522e66d2-9014-4a5a-a550-ebcaf53e50c7
+
+	column Skill
+		dataType: string
+		lineageTag: 6cdbbfbd-2d20-40b3-8400-5002182ef81b
+		summarizeBy: none
+		sourceColumn: Skill
+
+		annotation SummarizationSetBy = User
+
+	column 'Skill Type'
+		dataType: string
+		lineageTag: 9f69f3dd-4dab-4207-848f-07af108e0ea8
+		summarizeBy: none
+		sourceColumn: Skill Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Skill Rank'
+		dataType: int64
+		formatString: #,0
+		lineageTag: ca0825d7-474d-4267-89c9-bf4f32602455
+		summarizeBy: none
+		sourceColumn: Skill Rank
+
+		annotation SummarizationSetBy = User
+
+	partition DimSkill = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "DimSkill.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers,{{"Skill", type text}, {"Skill Type", type text}, {"Skill Rank", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

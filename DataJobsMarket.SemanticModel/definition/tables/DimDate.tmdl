@@ -1,0 +1,119 @@
+table DimDate
+	lineageTag: a4a63759-f7e5-4aa8-a7b7-e7d40eedc089
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-MM-dd
+		lineageTag: 4183706f-b3b1-47e9-8677-8ab535c3b7ba
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: #,0
+		lineageTag: b598bb0d-c5ac-4381-8c14-8e298f6e452e
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = User
+
+	column Quarter
+		dataType: string
+		lineageTag: ea852b65-4afd-4fbb-ae3b-6eb59b6d47ec
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = User
+
+	column 'Month Number'
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 6911d22d-9ec1-49e4-8650-42435db15315
+		summarizeBy: none
+		sourceColumn: Month Number
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: string
+		lineageTag: 795acd44-64c7-477a-88d8-f89c441a1e77
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = User
+
+	column 'Month Year'
+		dataType: string
+		lineageTag: a497d60a-13c4-4d54-9b08-6f1ebcbfd0ef
+		summarizeBy: none
+		sourceColumn: Month Year
+		sortByColumn: 'Year Month'
+
+		annotation SummarizationSetBy = User
+
+	column 'Year Month'
+		dataType: string
+		isHidden
+		lineageTag: c9a37a57-96e7-4348-bb6a-88f08f0bcbb3
+		summarizeBy: none
+		sourceColumn: Year Month
+
+		annotation SummarizationSetBy = User
+
+	column Week
+		dataType: int64
+		formatString: #,0
+		lineageTag: bd847498-2020-4b2a-a11d-3109c424a2f3
+		summarizeBy: none
+		sourceColumn: Week
+
+		annotation SummarizationSetBy = User
+
+	column 'Weekday Number'
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 1b4d0eb8-03c3-4fe6-a787-4022b79c057e
+		summarizeBy: none
+		sourceColumn: Weekday Number
+
+		annotation SummarizationSetBy = User
+
+	column Weekday
+		dataType: string
+		lineageTag: 129433e5-eee2-472b-a179-3443e272dd7b
+		summarizeBy: none
+		sourceColumn: Weekday
+		sortByColumn: 'Weekday Number'
+
+		annotation SummarizationSetBy = User
+
+	column Day
+		dataType: int64
+		formatString: #,0
+		lineageTag: fca2d68e-d614-496b-8a0a-10498bf6cf01
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = User
+
+	partition DimDate = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "DimDate.csv"),[Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers,{{"Date", type date}, {"Year", Int64.Type}, {"Quarter", type text}, {"Month Number", Int64.Type}, {"Month", type text}, {"Month Year", type text}, {"Year Month", type text}, {"Week", Int64.Type}, {"Weekday Number", Int64.Type}, {"Weekday", type text}, {"Day", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,245 @@
+Skill,Skill Type,Skill Rank
+SQL,Programming,1
+Python,Programming,2
+AWS,Cloud,3
+Azure,Cloud,4
+R,Programming,5
+Tableau,Analyst Tools,6
+Excel,Analyst Tools,7
+Spark,Libraries,8
+Power BI,Analyst Tools,9
+Java,Programming,10
+Hadoop,Libraries,11
+Scala,Programming,12
+Snowflake,Cloud,13
+Databricks,Cloud,14
+GCP,Cloud,15
+Git,Other,16
+Kafka,Libraries,17
+NoSQL,Programming,18
+Airflow,Libraries,19
+Oracle,Cloud,20
+Go,Programming,21
+Docker,Other,22
+SAS,Analyst Tools,23
+SQL Server,Databases,24
+Kubernetes,Other,25
+Redshift,Cloud,26
+TensorFlow,Libraries,27
+PySpark,Libraries,28
+pandas,Libraries,29
+Flow,Other,30
+Linux,Operating Systems,31
+Word,Analyst Tools,32
+SAP,Analyst Tools,33
+PowerPoint,Analyst Tools,34
+PyTorch,Libraries,35
+MySQL,Databases,36
+JavaScript,Programming,37
+BigQuery,Cloud,38
+Jira,Async Collaboration,39
+C++,Programming,40
+PostgreSQL,Databases,41
+NumPy,Libraries,42
+Terraform,Other,43
+scikit-learn,Libraries,44
+Looker,Analyst Tools,45
+GitHub,Other,46
+Jenkins,Other,47
+SSIS,Analyst Tools,48
+Shell,Programming,49
+MongoDB,Databases,50
+Qlik,Analyst Tools,51
+C#,Programming,52
+C,Programming,53
+Windows,Operating Systems,54
+VBA,Programming,55
+Cassandra,Databases,56
+Keras,Libraries,57
+Alteryx,Analyst Tools,58
+MATLAB,Programming,59
+Unix,Operating Systems,60
+Confluence,Async Collaboration,61
+SPSS,Analyst Tools,62
+Elasticsearch,Databases,63
+Bash,Programming,64
+GitLab,Other,65
+Jupyter,Libraries,66
+SSRS,Analyst Tools,67
+DAX,Analyst Tools,68
+React,Libraries,69
+Outlook,Analyst Tools,70
+Matplotlib,Libraries,71
+SharePoint,Analyst Tools,72
+T-SQL,Programming,73
+Ansible,Other,74
+HTML,Programming,75
+Express,Web Frameworks,76
+Spring,Libraries,77
+PowerShell,Programming,78
+Gdpr,Libraries,79
+DynamoDB,Databases,80
+CSS,Programming,81
+Redis,Databases,82
+Google Sheets,Analyst Tools,83
+Cognos,Analyst Tools,84
+Angular,Web Frameworks,85
+MicroStrategy,Analyst Tools,86
+Visio,Analyst Tools,87
+TypeScript,Programming,88
+Splunk,Analyst Tools,89
+Bitbucket,Other,90
+Node.js,Web Frameworks,91
+Flask,Web Frameworks,92
+Perl,Programming,93
+DB2,Databases,94
+Mongo,Programming,95
+Ruby,Programming,96
+PHP,Programming,97
+Plotly,Libraries,98
+Django,Web Frameworks,99
+Seaborn,Libraries,100
+Neo4j,Databases,101
+Chef,Other,102
+Spreadsheet,Analyst Tools,103
+Vue,Web Frameworks,104
+Aurora,Cloud,105
+MS Access,Analyst Tools,106
+VMware,Cloud,107
+GraphQL,Libraries,108
+Slack,Sync Collaboration,109
+Crystal,Programming,110
+NLTK,Libraries,111
+Julia,Programming,112
+Atlassian,Other,113
+Kotlin,Programming,114
+Selenium,Libraries,115
+FastAPI,Web Frameworks,116
+Visual Basic,Programming,117
+OpenCV,Libraries,118
+Yarn,Other,119
+Rust,Programming,120
+Assembly,Programming,121
+Zoom,Sync Collaboration,122
+Swift,Programming,123
+Notion,Async Collaboration,124
+Phoenix,Web Frameworks,125
+Puppet,Other,126
+Unity,Other,127
+IBM Cloud,Cloud,128
+Terminal,Other,129
+jQuery,Web Frameworks,130
+Unify,Sync Collaboration,131
+ggplot2,Libraries,132
+Ubuntu,Operating Systems,133
+ASP.NET,Web Frameworks,134
+SVN,Other,135
+MXNet,Libraries,136
+MariaDB,Databases,137
+Firebase,Cloud,138
+Planner,Async Collaboration,139
+Groovy,Programming,140
+Hugging Face,Libraries,141
+Watson,Cloud,142
+Theano,Libraries,143
+tidyverse,Libraries,144
+Red Hat,Operating Systems,145
+DataRobot,Analyst Tools,146
+macOS,Operating Systems,147
+OpenStack,Cloud,148
+Rshiny,Libraries,149
+Microsoft Teams,Sync Collaboration,150
+dplyr,Libraries,151
+CentOS,Operating Systems,152
+React.js,Web Frameworks,153
+Smartsheet,Async Collaboration,154
+Couchbase,Databases,155
+Ruby on Rails,Web Frameworks,156
+Trello,Async Collaboration,157
+Asana,Async Collaboration,158
+Flutter,Libraries,159
+VB.NET,Programming,160
+Wire,Sync Collaboration,161
+Pulumi,Other,162
+Solidity,Programming,163
+npm,Other,164
+Colocation,Cloud,165
+SQLite,Databases,166
+Sass,Programming,167
+COBOL,Programming,168
+Laravel,Web Frameworks,169
+Firestore,Databases,170
+Elixir,Programming,171
+Debian,Operating Systems,172
+Airtable,Async Collaboration,173
+Clojure,Programming,174
+Symphony,Sync Collaboration,175
+Unreal,Other,176
+Fortran,Programming,177
+Arch,Operating Systems,178
+DigitalOcean,Cloud,179
+Haskell,Programming,180
+Twilio,Sync Collaboration,181
+CodeCommit,Other,182
+Dart,Programming,183
+Webex,Sync Collaboration,184
+Electron,Libraries,185
+CouchDB,Databases,186
+Heroku,Cloud,187
+Next.js,Web Frameworks,188
+Drupal,Web Frameworks,189
+APL,Programming,190
+Lua,Programming,191
+Asp.net core,Web Frameworks,192
+Monday.com,Async Collaboration,193
+Symfony,Web Frameworks,194
+Objective-C,Programming,195
+F#,Programming,196
+QT,Libraries,197
+Erlang,Programming,198
+ClickUp,Async Collaboration,199
+Cordova,Libraries,200
+Ionic,Libraries,201
+SUSE,Operating Systems,202
+AngularJS,Web Frameworks,203
+mlr,Libraries,204
+RingCentral,Sync Collaboration,205
+Svelte,Web Frameworks,206
+OVH,Cloud,207
+WSL,Operating Systems,208
+Delphi,Programming,209
+Workfront,Async Collaboration,210
+Tidyr,Libraries,211
+Lisp,Programming,212
+Wrike,Async Collaboration,213
+Pascal,Programming,214
+Blazor,Web Frameworks,215
+Xamarin,Libraries,216
+Play,Web Frameworks,217
+Fedora,Operating Systems,218
+Google chat,Sync Collaboration,219
+Nuix,Analyst Tools,220
+Dlib,Libraries,221
+OCaml,Programming,222
+Gatsby,Web Frameworks,223
+Fastify,Web Frameworks,224
+Mlpack,Libraries,225
+Mattermost,Sync Collaboration,226
+Linode,Cloud,227
+Kali,Operating Systems,228
+Capacitor,Libraries,229
+Homebrew,Other,230
+Chainer,Libraries,231
+Nuxt.js,Web Frameworks,232
+Ember.js,Web Frameworks,233
+Shogun,Libraries,234
+Microsoft lists,Async Collaboration,235
+Huggingface,Libraries,236
+Esquisse,Analyst Tools,237
+Deno,Web Frameworks,238
+GTX,Libraries,239
+Dingtalk,Async Collaboration,240
+Rocket.Chat,Sync Collaboration,241
+Rubyon rails,Web Frameworks,242
+Msaccess,Analyst Tools,243
+Wimi,Async Collaboration,244

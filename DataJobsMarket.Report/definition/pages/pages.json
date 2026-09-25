@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "pageOrder": [
+    "pg01Overview",
+    "pg02Roles",
+    "pg03Skills",
+    "pg04Salaries",
+    "pg05Geography"
+  ],
+  "activePageName": "pg05Geography"
+}

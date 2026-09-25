@@ -1,0 +1,11 @@
+# Power BI local state and data cache (large, machine-specific)
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+# Too big for GitHub (Jobs.csv is 137 MB) — rebuild with tools/prep.py, see README
+raw/
+data/Jobs.csv
+data/JobSkills.csv
+# drafts and social assets
+LINKEDIN-POST.md
+carousel/*
+!carousel/all-pages-grid.png

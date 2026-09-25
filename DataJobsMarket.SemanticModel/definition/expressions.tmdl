@@ -1,0 +1,5 @@
+expression DataFolder = "C:\Users\Ankit\Desktop\PowerBI-DataJobs\data\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 45b60514-fdfc-4713-ae6c-400b29d53479
+
+	annotation PBI_ResultType = Text
+

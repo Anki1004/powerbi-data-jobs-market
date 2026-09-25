@@ -1,0 +1,295 @@
+table _Measures
+	lineageTag: 6bed9530-8228-4f18-9169-d750d8751e93
+
+	measure 'Total Postings' = COUNTROWS(Jobs)
+		formatString: #,0
+		displayFolder: Core
+		lineageTag: fe344779-fe75-4241-8025-03c31a2b6579
+
+	measure 'Postings (K)' = DIVIDE([Total Postings], 1000)
+		formatString: #,0.0"K"
+		displayFolder: Core
+		lineageTag: 5b6e2bdc-6a96-4770-90eb-3faad74bc100
+
+	measure 'Companies Hiring' = DISTINCTCOUNT(Jobs[Company])
+		formatString: #,0
+		displayFolder: Core
+		lineageTag: 3f818649-df7a-42c0-aabf-e71668eab5e4
+
+	measure Countries = DISTINCTCOUNT(Jobs[Country])
+		formatString: #,0
+		displayFolder: Core
+		lineageTag: 475c0800-bea3-4d45-8e2c-f80e5451e32c
+
+	measure Locations = DISTINCTCOUNT(Jobs[Location])
+		formatString: #,0
+		displayFolder: Core
+		lineageTag: d7c907b9-368c-4c92-bed0-ab30745a36af
+
+	measure 'Job Titles' = DISTINCTCOUNT(Jobs[Job Title])
+		formatString: #,0
+		displayFolder: Core
+		lineageTag: c953ffdd-d6bf-49da-8ea4-89cc0713c74d
+
+	measure 'Avg Postings per Day' = AVERAGEX(VALUES(DimDate[Date]), [Total Postings])
+		formatString: #,0
+		displayFolder: Core
+		lineageTag: 4ba1f2e1-ef9b-438a-9ec2-310c237667c1
+
+	measure 'Share of Postings %' = DIVIDE([Total Postings], CALCULATE([Total Postings], ALLSELECTED(Jobs)))
+		formatString: 0.0%
+		displayFolder: Core
+		lineageTag: 737c3143-ce2e-4ed7-a9ee-16db7575e20f
+
+	measure 'Remote %' = DIVIDE(CALCULATE(COUNTROWS(Jobs), Jobs[Remote] = "Remote"), [Total Postings])
+		formatString: 0.0%
+		displayFolder: Flags
+		lineageTag: f858d2e1-4c2e-4592-996a-22110c451ead
+
+	measure 'No Degree Mentioned %' = DIVIDE(CALCULATE(COUNTROWS(Jobs), Jobs[Degree Mention] = "No degree mentioned"), [Total Postings])
+		formatString: 0.0%
+		displayFolder: Flags
+		lineageTag: a2552b58-bc05-4b75-b04a-36d2fcfcd01f
+
+	measure 'Health Insurance %' = DIVIDE(CALCULATE(COUNTROWS(Jobs), Jobs[Health Insurance] = "Offered"), [Total Postings])
+		formatString: 0.0%
+		displayFolder: Flags
+		lineageTag: 1dcd7953-48b5-4e99-ae21-53006a75f727
+
+	measure 'Full-time %' = DIVIDE(CALCULATE(COUNTROWS(Jobs), Jobs[Schedule] = "Full-time"), [Total Postings])
+		formatString: 0.0%
+		displayFolder: Flags
+		lineageTag: 6421f3ea-5028-4aeb-a8ed-bd100eb27440
+
+	measure 'Median Salary' = MEDIAN(Jobs[Annual Salary])
+		formatString: \$#,0
+		displayFolder: Salary
+		lineageTag: 7c3afb03-b02b-4773-bc40-5a3dab20a819
+
+	measure 'Average Salary' = AVERAGE(Jobs[Annual Salary])
+		formatString: \$#,0
+		displayFolder: Salary
+		lineageTag: 633fe9dd-4c9d-4401-814c-bc8dfa11f696
+
+	measure 'Max Salary' = MAX(Jobs[Annual Salary])
+		formatString: \$#,0
+		displayFolder: Salary
+		lineageTag: 65bcac4b-3cba-4385-a1b7-834689f4deaf
+
+	measure 'P25 Salary' = PERCENTILE.INC(Jobs[Annual Salary], 0.25)
+		formatString: \$#,0
+		displayFolder: Salary
+		lineageTag: ca1cdc3f-0313-4ca6-9a9a-2bbe8aab872d
+
+	measure 'P75 Salary' = PERCENTILE.INC(Jobs[Annual Salary], 0.75)
+		formatString: \$#,0
+		displayFolder: Salary
+		lineageTag: a6d02e4a-d7a7-4710-b050-a6e8c28ffab9
+
+	measure 'Postings with Salary' = CALCULATE(COUNTROWS(Jobs), NOT ISBLANK(Jobs[Annual Salary]))
+		formatString: #,0
+		displayFolder: Salary
+		lineageTag: 80001d45-0128-4c3f-ab97-7a2d44d4313b
+
+	measure 'Salary Disclosure %' = DIVIDE([Postings with Salary], [Total Postings])
+		formatString: 0.0%
+		displayFolder: Salary
+		lineageTag: c6541454-2077-45d4-8913-7718a46a13a0
+
+	measure 'Overall Median Salary' = CALCULATE([Median Salary], REMOVEFILTERS(DimSkill), REMOVEFILTERS(JobSkills), REMOVEFILTERS(Jobs[Job Title]), REMOVEFILTERS(Jobs[Country]))
+		formatString: \$#,0
+		displayFolder: Salary
+		lineageTag: b38c678f-783a-471a-9ec7-9d217eb55aee
+
+	measure 'Salary Premium %' = DIVIDE([Median Salary] - [Overall Median Salary], [Overall Median Salary])
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Salary
+		lineageTag: 026d8293-0ec6-431b-92fe-a8cd988d02b1
+
+	measure 'Median Salary (Top 10 Titles)' = IF(RANKX(ALLSELECTED(Jobs[Job Title]), [Postings with Salary]) <= 10, [Median Salary])
+		formatString: \$#,0
+		displayFolder: Salary
+		lineageTag: 476a0a19-2573-4d8a-ab11-829bcf56ecfd
+
+	measure 'Median Salary (Top 10 Countries)' = IF(RANKX(ALLSELECTED(Jobs[Country]), [Postings with Salary]) <= 10, [Median Salary])
+		formatString: \$#,0
+		displayFolder: Salary
+		lineageTag: fe4fb5da-e91d-4f34-935e-b32a457ace2f
+
+	measure 'Skill Mentions' = COUNTROWS(JobSkills)
+		formatString: #,0
+		displayFolder: Skills
+		lineageTag: 99a5ab55-a0f1-4ccb-b72e-2257da2ae9c3
+
+	measure 'Distinct Skills' = DISTINCTCOUNT(JobSkills[Skill])
+		formatString: #,0
+		displayFolder: Skills
+		lineageTag: 92cc58ed-541a-4cb5-b6df-48c04fe08660
+
+	measure 'Postings with Skill' = DISTINCTCOUNT(JobSkills[Job ID])
+		formatString: #,0
+		displayFolder: Skills
+		lineageTag: 2431ccce-e0ff-4658-8d42-fd839185e8bf
+
+	measure 'Skill Postings' = COUNTROWS(JobSkills)
+		formatString: #,0
+		displayFolder: Skills
+		lineageTag: 9531982e-98a2-4b9c-a815-03b6cc647b41
+
+	measure 'Avg Skills per Posting' = DIVIDE([Skill Mentions], [Postings with Skill])
+		formatString: 0.0
+		displayFolder: Skills
+		lineageTag: 05979f02-2060-45b6-83e8-ec05a898d5ba
+
+	measure 'Postings (Skill Base)' = CALCULATE([Total Postings], REMOVEFILTERS(DimSkill), REMOVEFILTERS(JobSkills))
+		formatString: #,0
+		displayFolder: Skills
+		lineageTag: 7a770c82-9835-4623-80f8-0fe1fd989532
+
+	measure 'Skill Likelihood %' = DIVIDE([Skill Postings], [Postings (Skill Base)])
+		formatString: 0.0%
+		displayFolder: Skills
+		lineageTag: 58b0276a-2ae1-409f-87a8-775ae76f4100
+
+	measure 'Skill Rank Overall' = RANKX(ALLSELECTED(DimSkill[Skill]), CALCULATE([Skill Postings], REMOVEFILTERS(Jobs[Job Title])))
+		formatString: 0
+		displayFolder: Skills
+		lineageTag: c59c5600-e2ae-40f4-a4ef-b0559e270fc8
+
+	measure 'Skill Likelihood % (Top 15)' = IF(RANKX(ALLSELECTED(DimSkill[Skill]), [Skill Postings]) <= 15, [Skill Likelihood %])
+		formatString: 0.0%
+		displayFolder: Skills
+		lineageTag: 8d286084-d559-474d-9e41-3de8cbf63156
+
+	measure 'Skill Likelihood % (Top 12 Overall)' = IF([Skill Rank Overall] <= 12, [Skill Likelihood %])
+		formatString: 0.0%
+		displayFolder: Skills
+		lineageTag: 47758112-b47e-4016-bbaf-248b770fa707
+
+	measure 'Postings with Skill (Top 30)' = IF(RANKX(ALLSELECTED(DimSkill[Skill]), [Skill Postings]) <= 25, [Skill Postings])
+		formatString: #,0
+		displayFolder: Skills
+		lineageTag: 4e41cac3-97f2-4378-9ae7-499836b87d20
+
+	measure 'Median Salary (Top 30 Skills)' = IF(RANKX(ALLSELECTED(DimSkill[Skill]), [Skill Postings]) <= 25, [Median Salary])
+		formatString: \$#,0
+		displayFolder: Skills
+		lineageTag: 180cb485-c761-40c1-bacb-cebfda4313a8
+
+	measure 'Top Skill' = CALCULATE(SELECTCOLUMNS(TOPN(1, VALUES(DimSkill[Skill]), [Skill Postings], DESC), "s", DimSkill[Skill]))
+		displayFolder: Headline
+		lineageTag: ff903557-b382-4fd6-90c2-69ecbbcc6a81
+
+	measure 'Top Skill Type' = CALCULATE(SELECTCOLUMNS(TOPN(1, VALUES(DimSkill[Skill Type]), [Skill Mentions], DESC), "s", DimSkill[Skill Type]))
+		displayFolder: Headline
+		lineageTag: 0c8385fc-a4ff-4ae7-b624-626fd3f0410c
+
+	measure 'Top Job Title' = CALCULATE(SELECTCOLUMNS(TOPN(1, VALUES(Jobs[Job Title]), [Total Postings], DESC), "s", Jobs[Job Title]))
+		displayFolder: Headline
+		lineageTag: f8ddb942-105e-46a3-96d6-012ae32ec7ce
+
+	measure 'Top Country' = CALCULATE(SELECTCOLUMNS(TOPN(1, VALUES(Jobs[Country]), [Total Postings], DESC), "s", Jobs[Country]))
+		displayFolder: Headline
+		lineageTag: 3e7cd8c7-a3c4-40cd-91c4-a093fea960fc
+
+	measure 'Top Platform' = CALCULATE(SELECTCOLUMNS(TOPN(1, VALUES(Jobs[Platform]), [Total Postings], DESC), "s", Jobs[Platform]))
+		displayFolder: Headline
+		lineageTag: 13391fa6-9f96-4ee4-a851-d6f6e76fd7b3
+
+	measure 'Top Company' = CALCULATE(SELECTCOLUMNS(TOPN(1, VALUES(Jobs[Company]), [Total Postings], DESC), "s", Jobs[Company]))
+		displayFolder: Headline
+		lineageTag: 39bfa576-98c4-47f7-b976-74a6064d100f
+
+	measure 'Peak Month' = CALCULATE(SELECTCOLUMNS(TOPN(1, VALUES(DimDate[Month Year]), [Total Postings], DESC), "s", DimDate[Month Year]))
+		displayFolder: Headline
+		lineageTag: 78c59ecf-7593-45a2-88ad-cfd3813e4e0f
+
+	measure 'Postings (Top 10 Countries)' = IF(RANKX(ALLSELECTED(Jobs[Country]), [Total Postings]) <= 10, [Total Postings])
+		formatString: #,0
+		displayFolder: Ranking
+		lineageTag: 9b6f15b1-317d-4ea8-983b-0b0a37c30db6
+
+	measure 'Postings (Top 10 Companies)' = IF(RANKX(ALLSELECTED(Jobs[Company]), [Total Postings]) <= 10, [Total Postings])
+		formatString: #,0
+		displayFolder: Ranking
+		lineageTag: 9c297243-a5e1-4c1f-aad2-e8fa9d11ae13
+
+	measure 'Postings (Top 8 Platforms)' = IF(RANKX(ALLSELECTED(Jobs[Platform]), [Total Postings]) <= 8, [Total Postings])
+		formatString: #,0
+		displayFolder: Ranking
+		lineageTag: b14d4901-f048-42f6-acd4-9b25cefb2a66
+
+	measure 'Postings (Top 12 Locations)' = IF(RANKX(ALLSELECTED(Jobs[Location]), [Total Postings]) <= 12, [Total Postings])
+		formatString: #,0
+		displayFolder: Ranking
+		lineageTag: ecef214a-173f-4262-be82-3135e8cffe41
+
+	measure 'Postings (Top 6 Schedules)' = IF(RANKX(ALLSELECTED(Jobs[Schedule]), [Total Postings]) <= 6, [Total Postings])
+		formatString: #,0
+		displayFolder: Ranking
+		lineageTag: 8047d07b-f7a8-49ce-9509-20930bd192ba
+
+	measure 'Postings PM' = CALCULATE([Total Postings], DATEADD(DimDate[Date], -1, MONTH))
+		formatString: #,0
+		displayFolder: Time
+		lineageTag: 6f72a3ec-57a1-4369-af65-c230f2465dde
+
+	measure 'Postings MoM %' = DIVIDE([Total Postings] - [Postings PM], [Postings PM])
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Time
+		lineageTag: c1a66bdd-b7f7-493b-a892-9b00b132e5a9
+
+	measure 'Postings 7D Avg' = AVERAGEX(DATESINPERIOD(DimDate[Date], MAX(DimDate[Date]), -7, DAY), [Total Postings])
+		formatString: #,0
+		displayFolder: Time
+		lineageTag: d5b227fd-3007-4825-bee1-778d97ea7201
+
+	measure 'Color MoM' = IF([Postings MoM %] >= 0, "#22C55E", "#EF4444")
+		displayFolder: Colors
+		lineageTag: c4a93a07-4732-487b-8f80-685cad8c6c21
+
+	measure 'Color Premium' = IF([Salary Premium %] >= 0, "#22C55E", "#EF4444")
+		displayFolder: Colors
+		lineageTag: 00b4ce35-3369-41cc-bd76-ced6aa9d2aa7
+
+	measure 'Heat Skill Color' =
+			VAR v = [Skill Likelihood % (Top 12 Overall)]
+			VAR t = IF(ISBLANK(v), 0, MIN(1, SQRT(v / 0.45)))
+			VAR r = ROUND(19 + (13 - 19) * t, 0)
+			VAR g = ROUND(28 + (148 - 28) * t, 0)
+			VAR b = ROUND(49 + (136 - 49) * t, 0)
+			VAR hx = "0123456789ABCDEF"
+			RETURN "#" & MID(hx, INT(r / 16) + 1, 1) & MID(hx, MOD(r, 16) + 1, 1) & MID(hx, INT(g / 16) + 1, 1) & MID(hx, MOD(g, 16) + 1, 1) & MID(hx, INT(b / 16) + 1, 1) & MID(hx, MOD(b, 16) + 1, 1)
+		displayFolder: Colors
+		lineageTag: acd5bc1d-9616-4b90-a7ed-7e77db620f36
+
+	measure 'Heat Pay Color' =
+			VAR v = [Median Salary (Top 30 Skills)]
+			VAR t = IF(ISBLANK(v), 0, MAX(0, MIN(1, (v - 85000) / 60000)))
+			VAR r = ROUND(19 + (124 - 19) * t, 0)
+			VAR g = ROUND(28 + (58 - 28) * t, 0)
+			VAR b = ROUND(49 + (237 - 49) * t, 0)
+			VAR hx = "0123456789ABCDEF"
+			RETURN "#" & MID(hx, INT(r / 16) + 1, 1) & MID(hx, MOD(r, 16) + 1, 1) & MID(hx, INT(g / 16) + 1, 1) & MID(hx, MOD(g, 16) + 1, 1) & MID(hx, INT(b / 16) + 1, 1) & MID(hx, MOD(b, 16) + 1, 1)
+		displayFolder: Colors
+		lineageTag: 7039fdf5-68db-4456-9932-693af1271d04
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: 7b921ae9-780e-46ae-a077-9dd367a7cae4
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
